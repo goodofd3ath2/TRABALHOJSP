@@ -1,4 +1,6 @@
+<%@page import="dao.AlunoDAO"%>
 <%@include file="cabecalho.jsp"%>
+<%AlunoDAO dao = new AlunoDAO();%>
         <div>
             <h1 class="centro">Alunos</h1>
             
