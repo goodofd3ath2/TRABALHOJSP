@@ -102,7 +102,7 @@ public final class professores_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <td>");
       out.print(prof.getNome());
       out.write("</td>\n");
-      out.write("                            <td><a href=\"professores-editar.jsp?siape=");
+      out.write("                            <td><a href=\"professores-atualizar.jsp?siape=");
       out.print(prof.getSiape());
       out.write("\">Editar</a>\n");
       out.write("                                <a href=\"professores-excluir-ok.jsp?siape=");
