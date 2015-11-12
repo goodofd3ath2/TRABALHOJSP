@@ -8,25 +8,23 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import modelo.Aluno;
+import modelo.Professor;
 
 /**
  *
  * @author aluno
  */
 public class AlunoDAO {
-    public AlunoDAO() {
-        
-    }
+    EntityManager em;
     
-    public EntityManager getEm() throws Exception {
+    public AlunoDAO() throws Exception {
         EntityManagerFactory emf;
         emf = Conexao.getConexao();
-        return emf.createEntityManager();
+        em = emf.createEntityManager();
     }
     
-    public void incluir(AlunoDAO obj) throws Exception {
-        EntityManager em = getEm();
-//        cliente = em.getReference(Cliente.class,cliente.getId()); 
+    public void incluir(Aluno obj) throws Exception {
         try {
             em.getTransaction().begin();
             em.persist(obj);
@@ -40,13 +38,13 @@ public class AlunoDAO {
         }
         
     }
-    
-    public List<AlunoDAO> listar() throws Exception {
-        return getEm().createNamedQuery("AlunoDAOClasse.findAll").getResultList();
+
+    public List<Aluno> listar() throws Exception {
+        return em.createNamedQuery("Aluno.findAll").getResultList();
     }
     
-    public void alterar(AlunoDAO obj) throws Exception {
-        EntityManager em = getEm();
+    public void alterar(Aluno obj) throws Exception {
+        
         try {
             em.getTransaction().begin();
             em.merge(obj);
@@ -59,8 +57,8 @@ public class AlunoDAO {
         }
     }
     
-    public void excluir(AlunoDAO obj) throws Exception {
-        EntityManager em = getEm();
+    public void excluir(Aluno obj) throws Exception {
+        
         try {
             em.getTransaction().begin();
             em.remove(obj);
@@ -71,10 +69,12 @@ public class AlunoDAO {
             em.close();
         }
     }
-    
+
     public void fechaEmf() {
         Conexao.closeConexao();
     }
     
-
+public Aluno buscarPorChavePrimaria(String Chave){
+    return em.find(Aluno.class, Chave);
+}
 }
